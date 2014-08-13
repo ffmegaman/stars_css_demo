@@ -32,53 +32,60 @@ pics = [
 ]
 
 var numeralToWord = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+var sLongerWords = ["Hi", "JavaScript", "Full Stack Web Development"];
+var nColCount = 0;
 
-var addFiller = function(nCol) {
-  var phrase;
-  switch (nCol){
-    case 2:
-      phrase = 'Hi';
-      break;
-    case 4:
-      phrase = 'JavaScript'
-      break;
-    case 6:
-      phrase = 'Full Stack Web Development'
-      break;
-    default:
-      phrase = 'Default'
-      break;
-  }
-  return "<div class='" + numeralToWord[nCol] + " columns filler-bg'><p class='phrase'>" + phrase + "</p></div>"
+var sAddColumns = function(nCol) {
+  nColCount += nCol;
+  return numeralToWord[nCol] + " columns"
 }
 
+var addFiller = function(nCol) {
+  var phrase = sLongerWords[nCol/2-1];
+
+  return "<div class='" + sAddColumns(nCol) + " filler-bg'><p class='phrase'>" + phrase + "</p></div>"
+}
+
+var sAddFillers = function(nColMax) {
+  var sResult = "";
+
+  // because the pictures are set to be two columns wide, any filler we generate
+  // has to be an even number of columns or we could end up with a jagged right edge.
+  // The width options for the filler block are 2, 4 or 6 columns.
+  var fillerWidth = Math.floor(Math.random() * 3 + 1) * 2;
+
+  // check if we'd end up past the max column with this filler width
+  if (nColCount % nColMax + fillerWidth > nColMax) {
+
+    // find out how far to the right boundary
+    var nColToRightEdge = nColMax - (nColCount % nColMax);
+    sResult += addFiller(nColToRightEdge);
+    fillerWidth -= nColToRightEdge;
+  }
+
+  sResult += addFiller(fillerWidth);
+  return sResult;
+}
 
 mosaicSection = document.getElementById('mosaic');
 
-
+//
+//  Generates a simple mosaic with some blocks padding using CSS Skeleton's
+//  "column" functionality.
+//
 var startMosaic = function() {
-  var colCount = 0;
-  var colBoundary = 18;
   var sResult = ""
+
   for (var i = 0; i < pics.length; i++) {
-    var bFiller = Math.random() > 0.6;
+    var bFiller = Math.random() > 0.6;    // the chance of generating a filler block
+
+    // is the probabilty high enough to generate filler
     if (bFiller) {
-      var fillerWidth = Math.floor(Math.random() * 3 + 1) * 2;
-      if (((colCount % colBoundary) + fillerWidth) == (colBoundary - 1)) {// This leaves right edge jagged
-        fillerWidth++
-      }
-      else if (colCount % colBoundary + fillerWidth > colBoundary) { // This means the filler would go over the right edge
-        var eolWidth = colBoundary - (colCount % colBoundary);
-        sResult += addFiller(eolWidth);
-        colCount += eolWidth;
-        fillerWidth -= eolWidth;
-      }
-      sResult += addFiller(fillerWidth);
-      colCount += fillerWidth;
+      sResult += sAddFillers(18);
     }
-    sResult += "<img class='two columns' src='" + pics[i] + "'>";
-    colCount += 2;
-  };
+    sResult += "<img class='" + sAddColumns(2) + "' src='" + pics[i] + "'>";
+  }
+
   return sResult;
 }
 
