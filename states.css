@@ -1,0 +1,43 @@
+.container .columns, .container .column {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.container .three.columns {
+  width: 150px;
+}
+
+.container .four.columns {
+  width: 200px;
+}
+
+.container .five.columns {
+  width: 250px;
+}
+
+.container .six.columns {
+  width: 300px;
+}
+/* Fillers -------------------------------------- */
+
+.filler-bg {
+  height: 100px;
+  text-align: center;
+}
+
+.phrase {
+  margin-top: 30px;
+  font-size: 24px;
+}
+
+.two.filler-bg {
+  background-color: red;
+}
+
+.four.filler-bg {
+  background-color: yellow;
+}
+
+.six.filler-bg {
+  background-color: white;
+}
