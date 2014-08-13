@@ -3,7 +3,7 @@ html, body {
 }
 
 .screen-height {
-  height:100vh;
+  height:50vh;
 }
 
 /* SKY ------------------------------------------------- */
@@ -81,7 +81,7 @@ html, body {
 }
 
 #s9 {
-  margin: 30% 0% 0% 45%;
+  margin: 40% 0% 0% 10%;
 }
 
 #s10 {
@@ -153,6 +153,12 @@ html, body {
 
 img {
   width:1000px;
+}
+
+.rooftop {
+  width:85em;
+  margin-left: -10em;
+  margin-bottom: -3em;
 }
 
 .container .columns, .container .column {
