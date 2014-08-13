@@ -1,8 +1,7 @@
-# Stars - A CSS Demo
+# CSS Demo - Grid
 
-This is a simple one page site to demonstrate basic CSS. Hover your pointer over any star to see a fact about myself.
+This uses the Skeleton Grid system to display a mosaic of students in the August 2014 bootcamp class of Code Fellows. Scroll to the bottom to see the mosaic.
 
-#### Specs
+In addition, JS was used to dynamically create the HTML contents of the mosaic and fitting it together.
 
-Simple site with only one HTML file and one custom CSS file.
-Stars and the moon were created purely from CSS using `border-radius: 100%;`.
+Created by Charles Gust and Philip Nguyen
